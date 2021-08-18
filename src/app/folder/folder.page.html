@@ -1,0 +1,90 @@
+
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button class="refresh">
+        <ion-icon name="refresh-outline" color="dark"></ion-icon>
+        <span>
+          &nbsp;
+        </span>
+      </ion-button>
+      <ion-button>
+        <ion-icon name="filter-outline" color="dark"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Demo Company</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">{{ folder }}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+ 
+  <ion-row>
+    <ion-col offset="1" size="3">
+      <ion-button fill="outline"  color="dark"><ion-icon slot="start" name="square"></ion-icon>Items</ion-button>
+    </ion-col>
+
+    <ion-col size="3" offset="3">
+      <ion-button fill="outline"  color="dark"><ion-icon slot="start" name="people"></ion-icon>Party</ion-button>
+    </ion-col>
+  </ion-row>
+
+  
+  
+
+  <ion-content>
+    <ion-card *ngFor="let user of users">
+      <ion-item>
+        <ion-avatar item-start>
+          <img [src]="user.picture.medium">
+        </ion-avatar>
+        <h2 text-capitalize>{{ user.name?.first }} {{ user.name?.last }}</h2>
+      </ion-item>
+      <ion-card-content>
+        {{ user.email }}
+      </ion-card-content>
+    </ion-card>
+   
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMore($event)" loadingSpinner="bubbles" loadingText="Loading Users...">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+   
+  </ion-content>
+
+</ion-content>
+
+
+
+
+<ion-tabs >
+  <ion-tab-bar slot="bottom">
+
+    <ion-tab-button tab="Dashboard">
+      <ion-icon [name]="selectedTab =='Dashboard' ? 'rose' : 'square'"></ion-icon>
+
+      <ion-badge>6</ion-badge>
+    </ion-tab-button>
+
+    <ion-tab-button tab="Outstanding">
+      <ion-icon [name]="selectedTab =='Outstanding' ? 'refresh-outline': 'map'"></ion-icon>
+     
+    </ion-tab-button>
+
+    <ion-tab-button tab="Sales Team">
+      <ion-icon [name]="selectedTab =='Sales Team' ? 'refresh-outline': 'person-circle'"></ion-icon>
+    
+    </ion-tab-button>
+            
+    <ion-tab-button tab="Reports">
+      <ion-icon [name]="selectedTab =='Reports' ? 'refresh-outline': 'information-circle'"></ion-icon>
+  
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
